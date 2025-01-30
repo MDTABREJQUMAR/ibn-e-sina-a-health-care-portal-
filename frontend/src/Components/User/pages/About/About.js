@@ -15,17 +15,30 @@ function About() {
           <span>About Us</span>
         </h3>
         <p className="about-description">
-          Welcome to Health Plus, your trusted partner for accessible and
-          personalized healthcare. Our expert doctors offer online consultations
-          and specialized services, prioritizing your well-being. Join us on
-          this journey towards a healthier you.
+        The University has a Health Centre managed by a team of doctors, nurses and paramedical staff catering
+to basic medical treatment. Primary care and outpatient-services to all the students & staff of MANUU
+from9.00 AM to 8.00 PM on all working days are available. University has male and female wards
+separate for patients, in case of emergencies, for observation and intra-venous fluids, medication and nursing care.
+
+<p className="about-description"> 
+All the Emergency cases are attended by the doctors and supporting staff at the Health
+Centre and are treated either in the Health Centre or referred to other super specialty Hospitals
+depending on the condition of the patients. The Health Centre has an X-Ray Unit, Pathology Lab,
+Pharmacy and counseling services are also provided. Medical care is provided to all the patients free of
+cost. 
+</p>  
+
+The University will assist wards in getting medical insurance coverage from standard insurance
+companies, which they may use in case of hospitalization. Other activities like Health camps, Blood
+donation camps, screening camps for cardiology and alternative medicines like Homeopathy Camp are
+also organized in Health Centre.
         </p>
 
         <h4 className="about-text-title">Your Solutions</h4>
 
         <SolutionStep
           title="Choose a Specialist"
-          description="Find your perfect specialist and book with ease at Health Plus. Expert doctors prioritize your health, offering tailored care."
+          description="Find your perfect specialist and book with ease at IBN-E-SINA. Expert doctors prioritize your health, offering tailored care."
         />
 
         <SolutionStep

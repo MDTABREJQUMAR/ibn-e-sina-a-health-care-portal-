@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, Button, Container, Grid } from "@mui/material";
 import { styled } from "@mui/system";
-import img from "../../assets/h1_hero.png"
+import img from "../../assets/Ibn_e_sina.jpg";
 
 const StyledSliderArea = styled("div")`
 margin:0px
@@ -13,11 +13,12 @@ margin:0px
 
   align-items:center;
 
-  opacity:0.8;
-  height:100vh;
+  opacity:1;
+  background-color:black;
+  height:90vh;
 
 `;
-const AnimatedSpan = styled('span')`
+const AnimatedSpan = styled("span")`
   animation: fade-in 2s ease-in-out infinite;
 
   @keyframes fade-in {
@@ -36,6 +37,8 @@ const AnimatedSpan = styled('span')`
 const StyledSingleSlider = styled("div")`
   display: flex;
   align-items: center;
+  position:relative;
+  z-index:1
 `;
 
 const StyledHeroCaption = styled("div")`
@@ -43,25 +46,26 @@ const StyledHeroCaption = styled("div")`
 `;
 
 const Screen = () => {
-    const words = ["health", "sushi", "steak"];
-    const [currentIndex, setCurrentIndex] = React.useState(0);
-    
-    React.useEffect(() => {
-      const interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % words.length);
-      }, 2000);
-    
-      return () => {
-        clearInterval(interval);
-      };
-    }, []);
-    const currentword=words[currentIndex]
-    
-    
+  const words = ["health", "wellness", "stamina"];
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % words.length);
+    }, 2000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+  const currentword = words[currentIndex];
+
   return (
     <StyledSliderArea>
+      <div
+        style={{ height: "90vh", width: "100%", position: "absolute",background:'rgba(0,0,0,0.5)' }}
+      ></div>
       <div className="slider-active">
-       
         <StyledSingleSlider>
           <Container>
             <Grid container>
@@ -73,19 +77,20 @@ const Screen = () => {
                       color: "black",
                       fontSize: "40px",
                       fontWeight: "bold",
-                      textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)", 
+                      textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
                     }}
-                  >
-                    Committed to success
-                  </Typography>
+                  ></Typography>
                   <Typography
-                    variant="h2"
+                    variant="h4"
                     component="h1"
+                    color={"whitesmoke"}
                     className="cd-headline letters scale"
                   >
-                    We care about your {' '}
+                    <p>&nbsp; &nbsp;</p>
+                    <p>&nbsp;</p>
+                    We care about your{" "}
                     <strong className="cd-words-wrapper">
-                      <AnimatedSpan >{currentword}</AnimatedSpan>
+                      <AnimatedSpan>{currentword}</AnimatedSpan>
                     </strong>
                   </Typography>
                   <Typography
@@ -94,11 +99,14 @@ const Screen = () => {
                     data-delay="0.1s"
                     fontSize={20}
                   >
-                    Efficient hospital management system streamlining
-                    operations, enhancing patient care, and optimizing resource
-                    allocation
+                    <span
+                      style={{ color: "white" }}
+                    >
+                      Efficient hospital management system streamlining
+                      operations, enhancing patient care, and optimizing
+                      resource allocation
+                    </span>
                   </Typography>
-                 
                 </StyledHeroCaption>
               </Grid>
             </Grid>
@@ -110,4 +118,3 @@ const Screen = () => {
 };
 
 export default Screen;
-

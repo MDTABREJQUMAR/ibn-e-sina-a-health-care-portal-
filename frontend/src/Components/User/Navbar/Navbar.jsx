@@ -53,27 +53,16 @@ const Navbar = () => {
 
   return (
     <>
-      <AppBar sx={{ background: "#f3f7eb", position: "sticky" ,top:"0px" }}>
-        <Toolbar sx={{ justifyContent: "space-between" ,border:"none" }}>
-          <IconButton
-            size="large"
-            aria-label="account of current user"
-            aria-controls="menu-appbar"
-            aria-haspopup="true"
-            color="primary"
-            component={Link}
-            to="/"
-          >
-            <img
-              style={{
-                borderRadius: "60%",
-                width: 80,
-                height: 70,
-              }}
-              src={logo}
-              alt="logo"
-            />
-          </IconButton>
+      <AppBar sx={{ background: "#f3f7eb", position: "sticky", top: "0px" }}>
+        <Toolbar sx={{ justifyContent: "space-between", border: "none" }}>
+          <img
+            style={{
+              width: 150,
+              height: 30,
+            }}
+            src={logo}
+            alt="logo"
+          />
 
           {isMatch ? (
             <Drawor />
@@ -171,44 +160,57 @@ const Navbar = () => {
                       <MenuItem as={NavLink} to="/appointment">
                         Appointment
                       </MenuItem>
-                      <MenuItem as={NavLink} to="/userprofile">profile</MenuItem>
+                      <MenuItem as={NavLink} to="/userprofile">
+                        profile
+                      </MenuItem>
                       <MenuItem onClick={handlelog}>Logout</MenuItem>
-                     
                     </Menu>
                   </>
                 ) : (
-                  <Box sx={{
-                    display:"flex",
-                    flexDirection:"row",
-                    gap:"10px",
-                    justifyContent:"space-between",
-                    alignContent:"center"
-                  }}>
-
-                   <div>
-      <Button
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      >
-       login
-      </Button>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-      >
-        <MenuItem as={NavLink} to="/login" onClick={handleClose}>login as user</MenuItem>
-        <MenuItem  as={NavLink} to="/doctorlogin" onClick={handleClose}>login as doctor</MenuItem>
-       
-      </Menu>
-    </div>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "row",
+                      gap: "10px",
+                      justifyContent: "space-between",
+                      alignContent: "center",
+                    }}
+                  >
+                    <div>
+                      <Button
+                        id="basic-button"
+                        aria-controls={open ? "basic-menu" : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? "true" : undefined}
+                        onClick={handleClick}
+                      >
+                        login
+                      </Button>
+                      <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                        MenuListProps={{
+                          "aria-labelledby": "basic-button",
+                        }}
+                      >
+                        <MenuItem
+                          as={NavLink}
+                          to="/login"
+                          onClick={handleClose}
+                        >
+                          login as user
+                        </MenuItem>
+                        <MenuItem
+                          as={NavLink}
+                          to="/doctorlogin"
+                          onClick={handleClose}
+                        >
+                          login as doctor
+                        </MenuItem>
+                      </Menu>
+                    </div>
                     <Button
                       variant="outlined"
                       color="secondary"
