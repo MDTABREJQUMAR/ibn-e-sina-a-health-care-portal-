@@ -1,178 +1,252 @@
-
-
-
-
 import React from 'react';
-import { Avatar, Box, Chip, Container, Divider, Grid, Stack, styled, Typography } from '@mui/material';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import EmailIcon from '@mui/icons-material/Email';
-import HealingTwoToneIcon from '@mui/icons-material/HealingTwoTone';
-import CallIcon from '@mui/icons-material/Call';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import GitHubIcon from '@mui/icons-material/GitHub';
-
-import { pink } from '@mui/material/colors';
-import { HashLink } from 'react-router-hash-link';
+import { 
+  Box, 
+  Container, 
+  Grid, 
+  Typography, 
+  Divider, 
+  Chip, 
+  Stack, 
+  styled 
+} from '@mui/material';
+import { 
+  MapPin, 
+  Mail, 
+  Phone, 
+  Heart, 
+  Facebook, 
+  Linkedin, 
+  Github,
+  User,
+  Calendar,
+  MessageSquare,
+  Activity
+} from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
-
-const Root = styled('div')(({ theme }) => ({
-    width: '100%',
-    ...theme.typography.body2,
-    '& > :not(style) + :not(style)': {
-        marginTop: theme.spacing(2),
-    },
+// Styled components
+const IconWrapper = styled(Box)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  borderRadius: '50%',
+  width: 40,
+  height: 40,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginRight: theme.spacing(2),
+  '& svg': {
+    color: theme.palette.primary.contrastText,
+  },
+  transition: 'all 0.3s ease',
+  '&:hover': {
+    transform: 'scale(1.1)',
+    boxShadow: theme.shadows[3],
+  }
 }));
 
-// copyright function for generate year automatically
-function Copyright(props) {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
-            {'Developed with 🖤 by '}
-            <strong><a className='text-style' href="#" target="_blank" rel="noreferrer noopener">Tanzeel, Tabrej, Mohibullah</a> </strong>{'Copyright ©'}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
+const SocialIconWrapper = styled(Box)(({ theme }) => ({
+  backgroundColor: theme.palette.secondary.light,
+  borderRadius: '50%',
+  width: 36,
+  height: 36,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginRight: theme.spacing(2),
+  '& svg': {
+    color: theme.palette.secondary.main,
+  },
+  transition: 'all 0.3s ease',
+  '&:hover': {
+    backgroundColor: theme.palette.secondary.main,
+    '& svg': {
+      color: theme.palette.secondary.contrastText,
+    },
+  }
+}));
+
+const StyledLink = styled('a')(({ theme }) => ({
+  color: theme.palette.text.primary,
+  textDecoration: 'none',
+  transition: 'color 0.3s ease',
+  display: 'flex',
+  alignItems: 'center',
+  '&:hover': {
+    color: theme.palette.primary.main,
+  }
+}));
+
+const StyledNavLink = styled(NavLink)(({ theme }) => ({
+  color: theme.palette.text.primary,
+  textDecoration: 'none',
+  transition: 'color 0.3s ease',
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(1),
+  '&:hover': {
+    color: theme.palette.primary.main,
+  }
+}));
+
+const ServiceIcon = styled(Box)(({ theme }) => ({
+  marginRight: theme.spacing(1),
+  '& svg': {
+    color: theme.palette.primary.main,
+  }
+}));
+
+// Copyright function
+function Copyright() {
+  return (
+    <Typography variant="body2" color="text.secondary" align="center" sx={{ mt: 3, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      {'Developed with '}
+      <Heart size={16} style={{ margin: '0 4px', color: '#f06292' }} />
+      {' by '}
+      <strong>
+        <a 
+          href="#" 
+          target="_blank" 
+          rel="noreferrer noopener"
+          style={{ color: 'inherit', textDecoration: 'none', marginLeft: '4px' }}
+        >
+          Tanzeel, Tabrej, Mohibullah
+        </a>
+      </strong>
+      {' | Copyright © '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
 }
 
 const Footer = () => {
-    return (
-        <footer>
-            <Box className='sticky-container' sx={{ bgcolor: '#acb0a5', color: 'text.secondary', mt:3 , pb: 2, top: 'auto' }}>
-                <Container maxWidth="xl">
-                    <Grid container
-                        spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                        <Grid sx={{ m: 'auto' }} item xs={12} sm={6} md={4}>
-                            <Box>
-                                <Typography
-                                    variant="h6"
-                                    component="div"
-                                    direction="row"
-                                    justifyContent="flex-start"
-                                    alignItems="center"
-                                    sx={{ mr: 2, display: { xs: 'flex', md: 'flex' } }}
-                                > <Avatar sx={{mt:1, mb: 1, mr: 1, bgcolor: 'white' }}>
-                                        <HealingTwoToneIcon
-                                            color='primary'
-                                            fontSize='large' />
-                                    </Avatar>
-                                    IBN-E-SINA HEALTH CENTER
-                                </Typography>
-                                <Divider />
-                            </Box>
-
-                            <Stack direction="row"
-                                justifyContent="flex-start"
-                                alignItems="center"
-                                spacing={1} >
-                                <Avatar sx={{ mt: 1, bgcolor: pink[500] }}>
-                                    <LocationOnIcon />
-                                </Avatar><span>MANUU, HYDERABAD, INDIA</span>
-                            </Stack >
-
-                            <Stack direction="row"
-                                justifyContent="flex-start"
-                                alignItems="center"
-                                spacing={1} >
-                                <Avatar sx={{ mb: 1, mt: 1, bgcolor: pink[500] }}>
-                                    <EmailIcon />
-                                </Avatar>
-                                <a className='text-style' href="mailto:kasalariyaz786@gmail.com">
-                                kasalariyaz786@gmail.com
-                                </a>
-                            </Stack >
-
-                            <Stack direction="row"
-                                justifyContent="flex-start"
-                                alignItems="center"
-                                spacing={1} >
-                                <Avatar sx={{ mb: 1, bgcolor: pink[500] }}>
-                                    <CallIcon />
-                                </Avatar>
-                                <a className='text-style' href="tel:01680xxx86">
-                                +91 7702135771
-                                </a>
-                            </Stack >
-
-
-                        </Grid>
-
-                        {/* ----------service part ---------------*/}
-                        <Grid item xs={12} sm={4}>
-                            <Root>
-                                <Divider>
-                                    <Chip label="Our Services" />
-                                </Divider>
-                            </Root>
-
-                            <Box sx={{ p: 2 }}><NavLink className='text-style' to='/doctor' color='inherit'>Find a Doctor</NavLink></Box>
-
-                            <Box sx={{ p: 2 }}><NavLink className='text-style' to='/services' color='inherit'>All services</NavLink></Box>
-
-                            <Box sx={{ p: 2 }}><NavLink className='text-style' to='/doctor' color='inherit'>Make An Appointment</NavLink></Box>
-
-                            <Box sx={{ p: 2 }}><NavLink className='text-style' to='/contact' color='inherit'>Contact Us </NavLink></Box>
-                        </Grid>
-
-                        {/* ----------social media part ------------*/}
-
-                        <Grid item xs={12} sm={4}>
-                            <Root>
-                                <Divider>
-                                    <Chip label="Find us on social media" />
-                                </Divider>
-                            </Root>
-
-                            <Stack direction="row"
-                                justifyContent="flex-start"
-                                alignItems="center"
-                                spacing={1} >
-                                <Avatar sx={{ mb: 1, mt: 1, bgcolor: pink[500] }}>
-                                    <FacebookIcon />
-                                </Avatar>
-                                <a className='text-style' href="#" target="_blank" rel="noopener noreferrer" >
-                                    Facebook
-                                </a>
-                            </Stack >
-
-                            <Stack direction="row"
-                                justifyContent="flex-start"
-                                alignItems="center"
-                                spacing={1} >
-                                <Avatar sx={{ mb: 1, bgcolor: pink[500] }}>
-                                    <LinkedInIcon />
-                                </Avatar>
-                                <a className='text-style' href="#" target="_blank" rel="noopener noreferrer" >
-                                    LinkedIn
-                                </a>
-                            </Stack >
-
-                            <Stack direction="row"
-                                justifyContent="flex-start"
-                                alignItems="center"
-                                spacing={1} >
-                                <Avatar sx={{ mb: 1, bgcolor: pink[500] }}>
-                                    <GitHubIcon />
-                                </Avatar>
-                                <a className='text-style' href="#" target="_blank" rel="noopener noreferrer" >
-                                    GitHub
-                                </a>
-                            </Stack >
-
-
-                        </Grid>
-
-                    </Grid>
-                    <Divider sx={{ mb: 2 }} />
-                    <Copyright sx={{ mt: 5 }} />
-
-                </Container>
+  return (
+    <Box component="footer" sx={{ bgcolor: '#f5f7fa', color: 'text.secondary', mt: 6, pb: 3, borderTop: '1px solid #e0e0e0' }}>
+      <Container maxWidth="xl">
+        <Grid container spacing={4} sx={{ py: 4 }}>
+          {/* Organization Info */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <IconWrapper>
+                <Activity size={20} />
+              </IconWrapper>
+              <Typography variant="h6" component="div">
+                Ibn-e-Sina Health Center
+              </Typography>
             </Box>
+            
+            <Divider sx={{ mb: 3 }} />
+            
+            <Stack spacing={2}>
+              <StyledLink href="#" underline="none">
+                <IconWrapper>
+                  <MapPin size={18} />
+                </IconWrapper>
+                <Typography variant="body2">MANUU, Hyderabad, India</Typography>
+              </StyledLink>
+              
+              <StyledLink href="mailto:kasalariyaz786@gmail.com" underline="none">
+                <IconWrapper>
+                  <Mail size={18} />
+                </IconWrapper>
+                <Typography variant="body2">kasalariyaz786@gmail.com</Typography>
+              </StyledLink>
+              
+              <StyledLink href="tel:+917702135771" underline="none">
+                <IconWrapper>
+                  <Phone size={18} />
+                </IconWrapper>
+                <Typography variant="body2">+91 7702135771</Typography>
+              </StyledLink>
+            </Stack>
+          </Grid>
 
-        </footer >
-    );
+          {/* Services */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Box sx={{ mb: 3 }}>
+              <Divider>
+                <Chip 
+                  label="Our Services" 
+                  color="primary" 
+                  sx={{ fontWeight: 'medium', px: 2 }} 
+                />
+              </Divider>
+            </Box>
+            
+            <Stack spacing={1}>
+              <StyledNavLink to="/doctor">
+                <ServiceIcon>
+                  <User size={18} />
+                </ServiceIcon>
+                Find a Doctor
+              </StyledNavLink>
+              
+              <StyledNavLink to="/services">
+                <ServiceIcon>
+                  <Activity size={18} />
+                </ServiceIcon>
+                All Services
+              </StyledNavLink>
+              
+              <StyledNavLink to="/doctor">
+                <ServiceIcon>
+                  <Calendar size={18} />
+                </ServiceIcon>
+                Make an Appointment
+              </StyledNavLink>
+              
+              <StyledNavLink to="/contact">
+                <ServiceIcon>
+                  <MessageSquare size={18} />
+                </ServiceIcon>
+                Contact Us
+              </StyledNavLink>
+            </Stack>
+          </Grid>
+
+          {/* Social Media */}
+          <Grid item xs={12} sm={6} md={4}>
+            <Box sx={{ mb: 3 }}>
+              <Divider>
+                <Chip 
+                  label="Find Us on Social Media" 
+                  color="primary" 
+                  sx={{ fontWeight: 'medium', px: 2 }} 
+                />
+              </Divider>
+            </Box>
+            
+            <Stack spacing={2}>
+              <StyledLink href="#" target="_blank" rel="noopener noreferrer">
+                <SocialIconWrapper>
+                  <Facebook size={18} />
+                </SocialIconWrapper>
+                <Typography variant="body2">Facebook</Typography>
+              </StyledLink>
+              
+              <StyledLink href="#" target="_blank" rel="noopener noreferrer">
+                <SocialIconWrapper>
+                  <Linkedin size={18} />
+                </SocialIconWrapper>
+                <Typography variant="body2">LinkedIn</Typography>
+              </StyledLink>
+              
+              <StyledLink href="#" target="_blank" rel="noopener noreferrer">
+                <SocialIconWrapper>
+                  <Github size={18} />
+                </SocialIconWrapper>
+                <Typography variant="body2">GitHub</Typography>
+              </StyledLink>
+            </Stack>
+          </Grid>
+        </Grid>
+        
+        <Divider sx={{ my: 2 }} />
+        
+        <Copyright />
+      </Container>
+    </Box>
+  );
 };
 
 export default Footer;

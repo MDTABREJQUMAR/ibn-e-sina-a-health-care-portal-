@@ -13,7 +13,7 @@ export default function Departments({item}) {
     <Card sx={{ minWidth: 100,minHeight:100}}>
       <CardContent>
         <Typography sx={{ fontSize: 25 }} color="text.primary" gutterBottom>
-         {item.name}
+         {item?.name}
         </Typography>
         
         
