@@ -19,7 +19,6 @@ import toast from "react-hot-toast";
 import { Box } from "@mui/system";
 import { Grid, Typography } from "@mui/material";
 
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -41,9 +40,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function Cart() {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [id, setId] = React.useState(null);
-  const [report,setReport]=React.useState(false)
+  const [report, setReport] = React.useState(false);
 
   const [selectedInvoice, setSelectedInvoice] = React.useState(null);
 
@@ -67,7 +66,7 @@ export default function Cart() {
 
       console.log(response.data);
       toast.success("payment successfull!!!");
-      setReport(true)
+      setReport(true);
       setId(null);
     } catch (error) {
       console.log(error.message);
@@ -115,43 +114,50 @@ export default function Cart() {
 
   return (
     <>
-
-    <Grid container sx={{display:"flex" ,flexDirection:'column'}}>
-      <Grid item sx={{
-        marginTop:"20px",
-        marginBottom:"20px"
-      }}>
-      <Typography variant="h4" align="center" gutterBottom>
+      <Grid container sx={{ display: "flex", flexDirection: "column" }}>
+        <Grid
+          item
+          sx={{
+            marginTop: "20px",
+            marginBottom: "20px",
+          }}
+        >
+          <Typography variant="h4" align="center" gutterBottom>
             User DashBoard
           </Typography>
-      </Grid >
-      <Grid item>
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 600 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>Doctors Name</StyledTableCell>
+        </Grid>
+        <Grid item>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 600 }} aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>Doctors Name</StyledTableCell>
 
-              <StyledTableCell align="left">Disease</StyledTableCell>
-              <StyledTableCell align="left">Date</StyledTableCell>
-              {/* <StyledTableCell align="left">Status</StyledTableCell> */}
-              <StyledTableCell align="left">Invoice</StyledTableCell>
-              <StyledTableCell align="left">Pay Now</StyledTableCell>
-              <StyledTableCell align="left">Report</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {appointment?.list?.user_appointments?.map((item) => (
-              <StyledTableRow key={item._id}>
-                <StyledTableCell align="left">
-                  {item?.doctor?.name}
-                </StyledTableCell>
-                <StyledTableCell align="left">{item?.disease}</StyledTableCell>
-                <StyledTableCell align="left">{moment.utc(item?.date).format('MM/DD/YYYY')}</StyledTableCell>
-                {/* <StyledTableCell align="left">{item?.status}</StyledTableCell> */}
-                <StyledTableCell align="left">{item?.doctor?.ammount}</StyledTableCell>
-                <StyledTableCell align="left">
-                
+                  <StyledTableCell align="left">Disease</StyledTableCell>
+                  <StyledTableCell align="left">Date</StyledTableCell>
+                  {/* <StyledTableCell align="left">Status</StyledTableCell> */}
+                  <StyledTableCell align="left">Invoice</StyledTableCell>
+                  <StyledTableCell align="left">Pay Now</StyledTableCell>
+                  <StyledTableCell align="left">Report</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {appointment?.list?.user_appointments?.map((item) => (
+                  <StyledTableRow key={item._id}>
+                    <StyledTableCell align="left">
+                      {item?.doctor?.name}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {item?.disease}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {moment.utc(item?.date).format("MM/DD/YYYY")}
+                    </StyledTableCell>
+                    {/* <StyledTableCell align="left">{item?.status}</StyledTableCell> */}
+                    <StyledTableCell align="left">
+                      {item?.doctor?.ammount}
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
                       <Box
                         sx={{
                           display: "inline-block",
@@ -163,81 +169,71 @@ export default function Cart() {
                           border: "1px solid white",
                         }}
                       >
-
-                { item?.payment !== "paid"
-                     ? (
-                           <button
-                           onClick={() => {
-                             // setId(item._id)
-                             // if(id)
-                             // {
-                             //   checkout.show({ amount: item.invoice * 100})
-                             // }
-                             setId(item?._id);
-                             setSelectedInvoice(item?.doctor?.ammount);
-                           }}
-                           style={{
-                             backgroundColor: "transparent",
-                             border: "none",
-                             color: "inherit",
-                             cursor: "inherit",
-                             padding: 0,
-                           }}
-                         >
-                           Pay Via Khalti
-                         </button>
-                        )  :( <Typography>paid</Typography>)
-                          }
-                       
+                        {item?.payment !== "paid" ? (
+                          <button
+                            // onClick={() => {
+                            //   // setId(item._id)
+                            //   // if(id)
+                            //   // {
+                            //   //   checkout.show({ amount: item.invoice * 100})
+                            //   // }
+                            //   setId(item?._id);
+                            //   setSelectedInvoice(item?.doctor?.ammount);
+                            // }}
+                            style={{
+                              backgroundColor: "transparent",
+                              border: "none",
+                              color: "inherit",
+                              cursor: "inherit",
+                              padding: 0,
+                            }}
+                          >
+                            Pay Via UPI
+                          </button>
+                        ) : (
+                          <Typography>paid</Typography>
+                        )}
                       </Box>
-                  
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  { item?.payment === "paid"
-                     ? (
-
-                      <Box
-                      sx={{
-                        display: "inline-block",
-                        backgroundColor: "purple",
-                        padding: "10px",
-                        color: "white",
-                        cursor: "pointer",
-                        fontWeight: "bold",
-                        border: "1px solid white",
-                      }}
-                    >
-                      <button
-
-                       onClickCapture={() => navigate(`/report/${item._id}`)
-                      }
-                        
-                        style={{
-                          backgroundColor: "transparent",
-                          border: "none",
-                          color: "inherit",
-                          cursor: "inherit",
-                          padding: 0,
-                        }}
-                      >
-                        Report
-                      </button>
-                    </Box>
-                      
-                    ) : (
-                      <Typography>pending....</Typography>
-                    )
-                   }
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                    </StyledTableCell>
+                    <StyledTableCell align="left">
+                      {item?.payment !== "paid" ? (
+                        <Box
+                          sx={{
+                            display: "inline-block",
+                            backgroundColor: "purple",
+                            padding: "10px",
+                            color: "white",
+                            cursor: "pointer",
+                            fontWeight: "bold",
+                            border: "1px solid white",
+                          }}
+                        >
+                          <button
+                            onClickCapture={() =>
+                              navigate(`/report/${item._id}`)
+                            }
+                            style={{
+                              backgroundColor: "transparent",
+                              border: "none",
+                              color: "inherit",
+                              cursor: "inherit",
+                              padding: 0,
+                            }}
+                          >
+                            Report
+                          </button>
+                        </Box>
+                      ) : (
+                        <Typography>pending....</Typography>
+                      )}
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
       </Grid>
-       
-    </Grid>
-     
     </>
   );
 }

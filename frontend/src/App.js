@@ -25,6 +25,7 @@ import DDashboard from "./Components/Doctor/Dashboard";
 import UserProfile from "./Components/User/pages/userProfile";
 
 import AmbulanceBooking from "./Components/User/pages/Ambulance";
+import ScrollToTop from "./Components/scrollToTop";
 
 function App() {
   const [is_admin, setIsAdmin] = useState(localStorage.getItem("is_admin"));
@@ -53,6 +54,7 @@ function App() {
             sx={{ minHeight: "80vh", backgroundColor: "#dcfcec" }}
           >
             <Box>
+              <ScrollToTop/>
               <Routes>
                 <Route path="/" Component={Screen} />
                 <Route path="/contact" Component={Contact} />

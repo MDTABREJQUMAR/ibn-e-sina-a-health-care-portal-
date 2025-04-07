@@ -11,6 +11,7 @@ import vcImg from "../../assets/VC.png";
 import inchargeImg from "../../assets/Dr_Riyaz.jpg";
 import bgWelcome from "../../assets/ibne-sina.jpeg";
 import Slider2 from "../../../Doctor/components/slider2";
+import { useNavigate } from "react-router-dom";
 
 // Styled components for better design consistency
 const SectionTitle = styled(Typography)(({ theme }) => ({
@@ -68,6 +69,7 @@ const IconWrapper = styled(Box)(({ theme }) => ({
 }));
 
 const Homepage = () => {
+  const navigate=useNavigate()
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -127,10 +129,10 @@ const Homepage = () => {
             >
               <strong>Ibn-e-Seena Hospital</strong> combines 25+ years of excellence with compassionate, 
               personalized care. Our state-of-the-art healthcare facility offers exceptional medical 
-              services with a capacity of <strong>100 beds</strong> and 24/7 availability from our highly 
+              services with <strong> 24/7</strong> availability from our highly 
               trained professionals.
               <Box sx={{ my: 2 }} />
-              From preventive medicine to advanced surgical procedures, our comprehensive range of services 
+              From preventive medicine to basic surgical procedures, our comprehensive range of services 
               ensures a seamless and comfortable healing experience for all patients. We're committed to 
               delivering top-quality healthcare with modern technology and a patient-centered approach.
             </Typography>
@@ -456,7 +458,7 @@ const Homepage = () => {
           <Grid container spacing={3}>
             {[
               { number: "25+", text: "Years of Excellence" },
-              { number: "100", text: "Hospital Beds" },
+              { number: "10", text: "Hospital Beds" },
               { number: "24/7", text: "Emergency Service" },
               { number: "100%", text: "Patient Commitment" }
             ].map((item, index) => (
@@ -548,6 +550,7 @@ const Homepage = () => {
                   boxShadow: "0 8px 25px rgba(0,0,0,0.15)"
                 }
               }}
+              onClick={()=>navigate('/doctor')}
             >
               Book Appointment
             </Box>
